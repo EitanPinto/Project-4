@@ -1,0 +1,173 @@
+
+<div class="mainLeftDivSideBarAdminComp">
+    <div>
+        <div class="SearchBarMainDivOrdersComp">    
+            <mat-form-field class="search-bar-form-field">
+                <mat-label>Search Products Here:</mat-label>
+                <input [(ngModel)]="searchedProduct" (input)="searchedProducts()" matInput>
+              </mat-form-field>
+              <button mat-raised-button class="categoryButton" style="margin-left: 50px; height: 50px; border-radius: 50px; box-shadow: 2px 5px;" 
+              (click)="onAddItemMode()">
+                <mat-icon>add</mat-icon>
+                </button>
+             </div>
+
+        <div *ngIf="isUpdateModeOn || isCreateModeOn" style="line-height: 30px; font-weight:400; height: 30px; color:white; margin-top: 20px; text-align: center; background-color: #ff266e; width: 100%;">
+            {{subHeaderActionText}}
+        </div>
+    <div *ngIf="isUpdateModeOn" style="height: 350px; margin-top: 10%; text-align: center; background-color: #ff91b5; width: 90%;margin-left: 5% !important;">
+        <div style="margin-bottom: 20px">
+            <mat-form-field >
+                <input matInput placeholder="Set New Item Name" type="text" 
+                [value]="selectedProduct?.name" [(ngModel)]="productNameToUpdate">
+              </mat-form-field>
+        </div>
+        <div style="margin-bottom: 20px">
+        <mat-form-field >
+            <input matInput placeholder="Set New Item Price (In USD)" type="number"
+            [value]="selectedProduct?.price" [(ngModel)]="productPriceToUpdate">
+          </mat-form-field>
+        </div>
+        <div style="margin-bottom: 20px">
+            <mat-form-field >
+                <input matInput placeholder="Set New Item Image" type="text" 
+                [value]="selectedProduct?.image" [(ngModel)]="productImageToUpdate">
+              </mat-form-field>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <mat-form-field>
+                <mat-label>Set New Item Category</mat-label>
+                <mat-select [(value)]="productCategoryNameToUpdate">
+                  <mat-option [value]="category" *ngFor="let category of productCategoriesListNames">
+                    {{category}}
+                </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <button mat-raised-button class="categoryButton" (click)="onSaveChangesOnProduct()"  >
+        Save Changes     
+        </button>
+    </div>
+
+    <div *ngIf="isCreateModeOn" style="height: 350px; margin-top: 10%; text-align: center; background-color: #ff4a87; width: 90%;margin-left: 5% !important;">
+        <div style="margin-bottom: 20px">
+            <mat-form-field >
+                <input matInput placeholder="Set Item Name" type="text" required
+                 [(ngModel)]="productNameToCreate">
+              </mat-form-field>
+        </div>
+        <div style="margin-bottom: 20px">
+        <mat-form-field >
+            <input matInput placeholder="Set Item Price (In USD)" type="number" required
+             [(ngModel)]="productPriceToCreate">
+          </mat-form-field>
+        </div>
+        <div style="margin-bottom: 20px">
+            <mat-form-field >
+                <input matInput placeholder="Set Item Image" type="text" 
+                 [(ngModel)]="productImageToCreate">
+              </mat-form-field>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <mat-form-field>
+                <mat-label>Set Item Category</mat-label>
+                <mat-select [(value)]="productCategoryNameToCreate" required>
+                  <mat-option [value]="category" *ngFor="let category of productCategoriesListNames">
+                    {{category}}
+                </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <button mat-raised-button class="categoryButton"  (click)="onSubmitAddItem()" >
+        Save New Item     
+        </button>
+    </div>
+
+
+
+    </div>
+</div>
+
+
+
+<div class="mainRightDivSideBarAdminComp">
+    <div>
+        <div class="rightBoxFirstDivOrdersComp" >    
+           Admin Panel
+        </div>
+           <div class="productsViewMainDivSideBarOrdersComp" >
+            <div class="firstVerticalPartRightSideDiv">
+                <div>
+                    <mat-toolbar color="primary" fxLayout="row wrap" class="categoriesHeaderAdminComp">
+                      <button (click)="getFirstPageProductCategory(productCategory.id, i)" 
+                      *ngFor="let productCategory of productCategoriesList let i=index" 
+                      mat-raised-button 
+                      [ngClass]="selectedCategoryIndex === i && !isFreeTextSearchModeOn ? 'selectedCategoryButton' : 'categoryButton'">
+                        {{productCategory.name}}
+                    </button>
+                    </mat-toolbar>
+                </div>
+       <!--spinner -->
+        <div *ngIf="isSpinnerOn" fxLayout="row wrap" class="spinnerMainDivAdminComp">
+            <mat-spinner class="spinnerSelfAdminComp" color="accent"></mat-spinner>
+       </div>
+       <!--spinner -->
+                <div *ngIf="!isSpinnerOn && !isFreeTextSearchModeOn" class="productsNavigationArrowsMainDiv">
+                    <button *ngIf="isBackButtonPresented" 
+                    (click)="goBackProductsPageByCategory()" 
+                    mat-icon-button 
+                    class="productsNavigationArrowButton">
+                        <mat-icon>arrow_back</mat-icon>
+                    </button>
+                    <button *ngIf="isForwardButtonPresented" 
+                    (click)="goForwardProductsPageByCategory()" 
+                    mat-icon-button 
+                    class="productsNavigationArrowButton">
+                        <mat-icon>arrow_forward</mat-icon>
+                    </button>
+               </div>            
+                <div >
+                <div *ngIf="!isSpinnerOn && !isFreeTextSearchModeOn" class="productsViewMainDiv"  >
+                    <cdk-virtual-scroll-viewport itemSize="190" class="virtualScrollAdminComp" style="margin-left:33% !important">
+                    <div *cdkVirtualFor="let product of products" style="height: 190px !important; width: 300px !important;">
+                    <mat-card class="productsViewCardAdminComp">
+                        <mat-card-header >
+                          <mat-card-subtitle >{{product.name}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <div ><img src="assets/upload{{product.image}}" alt="" class="productsViewCardImgAdminComp"></div>
+                        <mat-card-content>
+                        <div>{{product.price | currency}} </div>
+                        </mat-card-content>
+                        <button mat-raised-button ngDefaultControl (click)="onUpdateItemMode(product.id)">
+                            Update <mat-icon>create</mat-icon>
+                        </button>
+                      </mat-card>
+                    </div>
+                </cdk-virtual-scroll-viewport>
+                </div>
+            </div>
+<!-- scrolling free search -->
+            <div *ngIf="!isSpinnerOn && isFreeTextSearchModeOn" class="productsViewMainDiv"  >
+                <cdk-virtual-scroll-viewport itemSize="195" class="virtualScrollAdminComp" style="margin-left:31% !important; height: 440px !important;"
+                (scrolledIndexChange)="getNextSearchedProductsBatch($event)">
+                <div *cdkVirtualFor="let product of productsArrayForInfiniteScrolling" style="height: 195px !important; width: 330px !important;">
+                <mat-card class="productsViewCardAdminComp">
+                    <mat-card-header >
+                      <mat-card-subtitle >{{product.name}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <div ><img src="assets/upload{{product.image}}" alt="" class="productsViewCardImgAdminComp"></div>
+                    <mat-card-content>
+                    <div>{{product.price | currency}} </div>
+                    </mat-card-content>
+                    <button mat-raised-button ngDefaultControl (click)="onUpdateItemMode(product.id)">
+                        Update <mat-icon>create</mat-icon>
+                    </button>
+                  </mat-card>
+                </div>
+            </cdk-virtual-scroll-viewport>
+            </div>
+ <!-- scrolling free search -->
+         </div>
+        </div>  
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div *ngIf="!loginResponse.isLoggedIn" 
+[ngStyle]="{'background-image': staticImagePath, 'background-size':'cover', 'background-position': 'center' }">
+    <mat-card  class="box">
+      <mat-card-header>
+        <mat-card-title >Log in</mat-card-title>
+      </mat-card-header>
+      <form>
+        <div style="text-align:center">
+            Registered ?
+        </div>
+        <mat-card-content>
+            <div>
+                <mat-form-field >
+                    <input matInput placeholder="Username" [(ngModel)] = "inputUsername" name="Username">
+                </mat-form-field>
+            </div>
+          <div>
+            <mat-form-field >
+                <input matInput type="password"placeholder="Password" [(ngModel)] = "inputPassword" name="Password">
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <div class="loginButtonsMainDiv">
+        <button mat-stroked-button color="accent" class="btn-block" (click)="onloginSubmit()">
+          Log in
+        </button>
+        <div class="newUserDivLogin"> New user ?
+        </div>
+        <button mat-stroked-button color="accent" class="btn-block" routerLink="register" >
+          Sign up
+        </button>
+    </div>
+      </form>
+    </mat-card>
+  </div>
+  <!-- switch -->
+  <div *ngIf="loginResponse.isLoggedIn" [ngStyle]="{'background-image': currentImage, 'background-size':'cover', 'background-position': 'center'}">
+    <mat-card  class="box" >
+        <div *ngIf="authService.openCartNotExist || authService.isNewCustomer || authService.openCartExist" 
+        class="buttonDivsLoginCartOptions">
+            <button class="buttonsLoginCartOptions" mat-raised-button color="primary" (click)="goToShoppingPage()">
+                {{authService.goToShoppingPageButtonText}}
+            </button>
+        </div>
+    </mat-card>
+  </div>
+  

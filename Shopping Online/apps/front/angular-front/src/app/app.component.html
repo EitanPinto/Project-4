@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="app-header">
+  <div routerLink="" routerLinkActive="active" class="logoDiv"> <img class="logoImg" src="../assets/upload/storeLogo.png" alt="N/A"></div>
+  <div>
+  <div class="nav-tool-items mainHelloUserMessage" >
+    Hi There {{this.authService.userName}}
+  </div>
+  <div *ngIf="authService.isSignOutButtonPresented" class="signOutBtn" (click)="onLogOut()">
+   Sign Out
+  </div>
+</div>
+</mat-toolbar>
+<router-outlet></router-outlet>
+

@@ -1,0 +1,105 @@
+
+<div class="mainLeftDivSideBar">
+    <div>
+        <div class="SearchBarMainDivOrdersComp">    
+            <mat-form-field class="search-bar-form-field">
+                <mat-label>Search Products In Cart:</mat-label>
+                <input [(ngModel)]="searchedProduct" (input)="searchedProducts()" matInput>
+              </mat-form-field>
+        </div>
+        <div class="myCartHeaderDivOrdersComp">
+            My Cart 
+        </div>
+           <div class="productsViewMainDivSideBarOrdersComp" >
+            <cdk-virtual-scroll-viewport itemSize="80" class="virtualScrollOrderComp">
+             <div *cdkVirtualFor="let currentProduct of currentProductsInClientOpenCart" class="virtualScrollOrderCompFirstInnerDiv">
+                <div class="productsViewVirtualScrollSecondInnerDiv">
+                <div>
+                    <img class="productsViewVirtualScrollImg" src="assets/upload{{currentProduct.image}}" alt="" 
+                    height="50px" width="50px">
+                    <div class="productsViewVirtualScrollProductName"
+                    [ngStyle]="currentProduct.dummyProperty ? {'background-color': 'yellow'} : {'background-color': '#ff9abc'}" 
+                    >{{currentProduct.name}}</div>
+                    <div class="productsViewVirtualScrollProductPrice">{{currentProduct.price | currency}}</div>
+                </div>
+                <div class="productsViewVirtualScrollProductsQuantity">Quantity: {{currentProduct.quantity}}</div>
+              </div>
+           </div>
+         </cdk-virtual-scroll-viewport> 
+        </div>  
+        <div class="totalPriceDivOrdersComp">
+            <div class="totalPriceDivFirstInner">
+                Total Cart Cost: {{currentTotalCartPrice | currency}}
+            </div>
+           <div class="backToShopDivButton" (click)="onBackToShopSubmit()">
+            Back to shop <div class="backToShopInsideDivButton"> <mat-icon 
+                class="backToShopIcon"
+                >shopping_cart</mat-icon></div>
+           </div>
+        </div>
+    
+    </div>
+</div>
+
+
+<div class="mainRightDivSideBar">
+    <div>
+        <div class="rightBoxFirstDivOrdersComp" >    
+           Confirm your order details
+        </div>
+        <div class="myCartHeaderDivOrdersComp">
+            Shipping details
+        </div>
+           <div class="productsViewMainDivSideBarOrdersComp" >
+            <div class="firstVerticalPartRightSideDiv">
+                <div class="shippingCityInputMainDiv">
+                    <mat-form-field>
+                        <mat-label>Select City Of Shipping</mat-label>
+                        <mat-select [(value)]="city" required>
+                          <mat-option [value]="city" *ngFor="let city of cities">{{city}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div class="shippingStreetInputMainDiv">
+            <mat-form-field >
+                <input matInput placeholder="Street" type="text" [value]="street" required
+                 (dblclick)="onDblClickEventInputs()" [(ngModel)]="street">
+              </mat-form-field>
+            </div>
+            <div class="shippingHouseNumberInputMainDiv">
+              <mat-form-field >
+                <input matInput placeholder="House No." type="number" min="1" 
+                [value]="houseNumber" required (dblclick)="onDblClickEventInputs()" [(ngModel)]="houseNumber">
+              </mat-form-field>
+            </div>
+            <div class="shippingDateInputMainDiv">
+                <mat-form-field class="shippingDateFormField">
+                    <input matInput [matDatepicker]="picker" [matDatepickerFilter]="myDatesFilter" 
+                    placeholder="Choose a date" required [(ngModel)]="this.selectedDate">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>                  
+              </div>
+              <div class="shippingStreetInputMainDiv">
+                    <mat-form-field>
+                        <input matInput placeholder="Choose hours" type="time" required [(ngModel)]="hour">
+                    </mat-form-field>
+              </div>
+         </div>
+        </div>  
+        <div class="paymentsBannerDiv">
+            Payments
+        </div>
+        <div class="creditCardInputMainDiv">
+            <mat-form-field >
+                <input matInput placeholder="Credit Card No." type="number" required min="1" [(ngModel)]="creditCard">
+            </mat-form-field>
+        </div>
+        <div class="submitOrderBannerDiv">
+            <div class="submitOrderBannerFirstInnerDiv">
+            <button mat-raised-button color="primary" class="btn-block" (click)="onSubmitOrder()">Submit Order</button>
+           </div>
+        </div>
+    </div>
+</div>

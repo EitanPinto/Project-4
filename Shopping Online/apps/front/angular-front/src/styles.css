@@ -1,0 +1,710 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  background: #e2e2e2;
+}
+.app-header {
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+.logoDiv {
+  color: #ffffff;
+  cursor: pointer;
+}
+.logoImg {
+height: 50px;
+margin-top: 5px;
+}
+.mainHomeDiv {
+    background-image: url(../src/assets/upload/getty_518504426_2000196920009280941_319976.jpg); 
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+.lowerHomeDiv{
+padding-top: 130px !important; 
+height: 550px;
+width: 100%;
+}
+.box{
+height: 518px;
+background-color: rgba(155, 212, 209, 0.575);
+}
+.registerForm {
+    width: 250px; 
+    margin: auto;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+  }
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 2s linear;
+  }
+.errorDivRegisterStageOne{
+    color: rgb(255, 40, 94);
+    margin-bottom: 10px;
+}
+
+
+*{padding:0;margin:0}
+.wrapper{display:flex;justify-content:center;align-items:center}
+.checkmark__circle{
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #e1157e;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
+}.checkmark{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    margin: 10% auto;
+    box-shadow: inset 0px 0px 0px #7ac142;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+}.checkmark__check{
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+}@keyframes stroke{
+    100%{stroke-dashoffset: 0}
+}@keyframes scale{
+    0%, 100%{transform: none}
+    50%{transform: scale3d(1.1, 1.1, 1)}}
+@keyframes fill{
+    100%{box-shadow: inset 0px 0px 0px 30px #e1157e}}
+
+.labelRegisterHeader {
+    font-size:15px; 
+    text-decoration:solid;
+}
+.mainDivsRegister {
+    background-image: url(../src/assets/upload/-1x-1.jpg); 
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    /* margin-top: 63px; */
+}
+.buttonsDivRegisterComponent{
+    text-align: center;
+}
+.boxRegister {
+    background-color: rgba(155, 212, 209, 0.575);
+    height: 600px;
+}
+.wellcomeBoxImageDiv{
+        margin-left: 150px;
+        margin-top: 15px;
+        border: 1px solid white;
+        background-color: white;
+        box-shadow: 10px 10px 5px #5b5b5b;
+        float: left;
+        -ms-transform: rotate(-8deg); 
+        -webkit-transform: rotate(-8deg); 
+        transform: rotate(-8deg);
+}
+
+
+.mainDivSecondComHome {
+    text-align: center;
+}
+.mainDivSecondComHome > h4 {
+    font-weight: bold;
+}
+.mainDivSecondComHome > h3 {
+    font-weight: bold;
+}
+.DivsTextSecondComHome {
+    text-align: left; 
+    width:250px; 
+    font-size: 16px; 
+    font-weight:400;
+}
+
+.divImgThirdComHome {
+    text-align:center;
+}
+.ImgThirdComHome {
+    border-radius: 50%; 
+    border:2px solid; 
+    border-color: rgba(0, 255, 238, 0.823);
+}
+.divNumberOfProductsandOrders {
+    width: 250px; 
+    text-align: center; 
+    margin: auto; 
+    margin-top: 30px; 
+    font-size: 16px; 
+    font-weight:400;
+}
+.spanNumberOfProductsandOrders {
+    font-weight:bold;
+}
+.divNumberOfOrders{
+    margin-top: 10px;
+}
+
+
+.mainDivNotificationThirdCom {
+    color:white; 
+    background-color: #3f51b5; 
+    margin-top: 50px; 
+    text-align: center;
+    box-shadow: 5px 5px 5px #302f2f;
+}
+.CartNotificationDivs {
+    margin-top: 15px;
+}
+
+.newUserDivLogin {
+    margin-top: 15px; 
+    margin-left:5px;
+}
+.loginButtonsMainDiv {
+    margin-top: 150px;
+}
+
+.buttonDivsLoginCartOptions{
+    margin-left: 70%; 
+    margin-top: 10%;
+}
+.buttonsLoginCartOptions{
+    box-shadow: 5px 5px 5px #302f2f;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.categoryButton {
+  color: #ff4081; 
+  margin-bottom: 4px; 
+  margin-right: 4px;
+}
+.selectedCategoryButton {
+    background-color: #ff4081;
+    color: white; 
+    margin-bottom: 4px; 
+    margin-right: 4px;
+  }
+
+
+    mat-form-field.search-bar-form-field .mat-form-field-label {
+    color: white !important;
+   }
+   mat-form-field.search-bar-form-field .mat-form-field-ripple {
+    background-color: white !important;
+    color:#fff
+   }
+   mat-form-field.search-bar-form-field .mat-form-field-underline {
+    background-color: white !important;
+  } 
+  .search-bar-form-field.mat-focused  {
+    color: white !important;
+  }
+  .search-bar-form-field {
+    margin-left:30%;
+  }
+.virtualScrollingMainTag {
+    background-color:#ffb2cc; 
+    height: 65%;
+}
+
+.virtualScrollingCardDiv {
+    margin-bottom: 10px; 
+    margin-left: 38%; 
+    margin-top: 5px; 
+    width: 200px; 
+    height: 250px; 
+    text-align: center;
+}
+.virtualScrollingCard {
+    background-color:rgb(255, 7, 127); 
+    height: 220px;
+}
+.virtualScrollingCardImg {
+    height: 100px; 
+    width:100px;
+}
+.productsViewMainDiv {
+    background-color: rgb(255, 7, 127); 
+    justify-content: center;
+}
+.productsViewCardDiv {
+    margin-bottom: 4px; 
+    margin-right: 4px; 
+    width: 200px; 
+    height: 100%; 
+    text-align: center;
+}
+
+.productsViewCard {
+    background-color: #ffb2cc; 
+    height: 220px;
+}
+
+.productsViewCardImg {
+    height: 100px; 
+    width:100px;
+}
+
+.spinnerMainDiv {
+    height: 50%; 
+    justify-content: center; 
+    background-color: rgb(170, 34, 100);
+}
+.spinnerSelf {
+    margin-top:25%;
+}
+.productsNavigationArrowsMainDiv {
+    background-color: rgb(255, 7, 127); 
+    text-align: center;
+}
+
+.productsNavigationArrowButton {
+    background-color: rgb(255, 141, 196);
+}
+
+.compareArrowsIcon {
+    color:  rgb(255, 131, 191) !important;
+}
+
+.compareArrowsIconText {
+    background-color: rgb(255, 103, 176) !important;
+}
+
+.mainShoppingPageDiv {
+    margin-top: 100px;
+    width: 1400px; 
+    height: 700px; 
+    margin: auto;
+}
+.categoriesHeader {
+    margin-top: 40px !important;
+    background-color: #5f6587 !important;
+    height: 200px !important;
+    justify-content: center !important;
+}
+
+.emprtCartDivButtonWithDisabledEvents {
+    display: inline-block;
+    margin-left: 25px;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.emprtCartDivButton {
+    display: inline-block;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.submitOrderDivButtonWithDisabledEvents {
+    float: right;
+    padding-top: 20px;
+    cursor: pointer;
+    pointer-events: none;
+}    
+
+.submitOrderDivButton {
+    float: right;
+    padding-top: 20px;
+    cursor: pointer;
+}    
+
+.emprtCartInsideDivButton {
+    display: inline-block;
+}
+
+.emptyCartIcon {
+    display: inline-flex; 
+    vertical-align: middle;
+}
+
+.submitOrderInsideDivButton {
+    display: inline-block;
+}
+
+.submitOrderIcon {
+    display: inline-flex; 
+    vertical-align: middle;
+}
+
+.totalPriceDiv {
+    height: 7%;
+    background-color: #ff2870; 
+    width: 28.25vw;
+}
+
+.totalPriceInsideDiv {
+    display: inline-block; 
+    padding-top:20px;
+}
+
+.myCartHeaderDiv {
+    color: rgba(255, 255, 255, 0.705); 
+    height: 2%;
+    background-color:#ff2870; 
+    width: 28.25vw; 
+    margin-top:20px; 
+    text-align: center; 
+    font-weight: bold;
+}
+
+.productsViewMainDivSideBar {
+    height: 70%;
+    background-color:#ffc4d8; 
+    width: 28.25vw;
+}
+.productsViewVirtualScrollMain {
+    height: 100%;
+}
+
+.productsViewVirtualScrollFirstInnerDiv {
+    height: 80px; 
+    width: 28.25vw;
+}
+
+.productsViewVirtualScrollSecondInnerDiv {
+    border: 1px solid; 
+    background-color:#ff9abc;
+}
+
+.productsViewVirtualScrollImg {
+    display: inline-block; 
+    margin-top: 5px;
+}
+
+.productsViewVirtualScrollProductName {
+    display: inline-block; 
+    vertical-align: super;
+}
+
+.productsViewVirtualScrollProductPrice {
+    margin-top: 20px; 
+    margin-right: 10px;
+    float: right; 
+    vertical-align: super;
+}
+
+.productsViewVirtualScrollProductsQuantity {
+    display: inline-block;
+}
+
+.productsViewVirtualScrollDeleteItemMainDiv {
+    float: right;
+}
+
+.deleteItemIcon {
+    display: inline-flex; 
+    vertical-align: middle; 
+    cursor: pointer;
+}
+
+.SearchBarMainDiv{
+    background-color:rgb(255, 7, 127); 
+    width: 28.25vw;
+}
+
+.myCartHeaderDivOrdersComp {
+    color: rgba(255, 255, 255, 0.705); 
+    height: 2%;
+    background-color:#ff2870; 
+    width: 100%; 
+    margin-top:20px; 
+    text-align: center; 
+    font-weight: bold;
+}
+
+.SearchBarMainDivOrdersComp{
+    background-color:rgb(255, 7, 127); 
+    width: 100%;
+}
+
+.productsViewMainDivSideBarOrdersComp {
+    height: 70%;
+    background-color:#ffc4d8; 
+    width: 90% !important;
+    margin-left: 5% !important;
+}
+
+.totalPriceDivOrdersComp {
+    height: 7%;
+    background-color: #ff2870; 
+    width: 100%;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.backToShopDivButton {
+    float: right;
+    cursor: pointer;
+}    
+
+.backToShopInsideDivButton {
+    display: inline-block;
+} 
+
+.backToShopIcon {
+    display: inline-flex; 
+    vertical-align: middle;
+}
+
+.virtualScrollOrderComp {
+    height:400px;
+}
+.virtualScrollOrderCompFirstInnerDiv {
+    height:80px;
+}
+
+.totalPriceDivFirstInner {
+    display: inline-block;
+}
+
+.mainLeftDivSideBar {
+    margin-left: 1.5%;
+    margin-top: 100px; 
+    display: inline-block; 
+    width: 45%; 
+    height: 600px; 
+    background-color: #3f51b5; 
+    color:#121621;
+}
+
+
+.mainRightDivSideBar {
+    margin-right: 1.5%;
+    float: right;
+    margin-top: 100px; 
+    width: 45%; 
+    height: 600px; 
+    background-color: #3f51b5; 
+    color:#121621;
+}
+
+.rightBoxFirstDivOrdersComp {
+    background-color:rgb(255, 7, 127); 
+    width: 100%;
+    height: 56px;
+    text-align: center;
+    line-height: 56px;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.829)
+}
+
+.firstVerticalPartRightSideDiv{
+    height: 325px; 
+    text-align: center;
+}
+
+.shippingCityInputMainDiv {
+    margin-bottom: 5px; 
+    padding-top: 5px;
+}
+
+.shippingStreetInputMainDiv {
+    margin-bottom: 5px;
+}
+
+.shippingHouseNumberInputMainDiv {
+    margin-bottom: 5px;
+}
+
+.shippingDateInputMainDiv {
+    margin-bottom: 15px;
+}
+
+.shippingDateFormField {
+    width: 180px;
+}
+
+.paymentsBannerDiv {
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.705);
+    height: 2%;
+    background-color:#ff2870; 
+    width: 100%;
+    text-align: center;
+}
+
+.creditCardInputMainDiv {
+    height: 58px; 
+    text-align: center; 
+    background-color: #ffc4d8;
+}
+
+.submitOrderBannerDiv {
+    height:6%; 
+    background-color: #ff2870;  
+    width: 100%; 
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.submitOrderBannerFirstInnerDiv {
+    text-align: center;
+}
+
+.hiddenHrefForReceipt {
+    display: none  !important;
+}
+
+.mainLeftDivSideBarAdminComp {
+    margin-left: 1.5%;
+    margin-top: 100px; 
+    display: inline-block; 
+    width: 30%; 
+    height: 700px; 
+    background-color: #3f51b5; 
+    color:#121621;
+}
+
+.mainRightDivSideBarAdminComp  {
+    margin-right: 1.5%;
+    float: right;
+    margin-top: 100px; 
+    width: 60%; 
+    height: 700px; 
+    background-color: #3f51b5; 
+    color:#121621;
+}
+
+.categoriesHeaderAdminComp {
+    background-color: #5f6587 !important;
+    height: 200px !important;
+    justify-content: center !important;
+}
+
+
+.productsViewCardDivAdminComp {
+    margin-bottom: 4px; 
+    margin-right: 4px; 
+    width: 200px; 
+    text-align: center;
+}
+
+.productsViewCardAdminComp {
+    background-color: #ffb2cc; 
+    height: 220px;
+}
+
+.productsViewCardImgAdminComp {
+    height: 50px; 
+    width: 50px;
+}
+
+.virtualScrollAdminComp {
+    height:400px;
+}
+
+.spinnerMainDivAdminComp {
+    height: 440px; 
+    justify-content: center; 
+    background-color: rgb(255, 148, 200);
+}
+.spinnerSelfAdminComp {
+    margin-top:20%;
+}
+
+
+body::-webkit-scrollbar {
+    width: 12px;           
+}
+  
+body::-webkit-scrollbar-track {
+    background: rgb(174, 174, 174);        
+}
+  
+body::-webkit-scrollbar-thumb {
+    background-color: #3f51b5;   
+    border-radius: 20px;       
+    border: 3px solid rgb(174, 174, 174);   
+}
+  
+
+.virtualScrollingMainTag::-webkit-scrollbar {
+    width: 12px;              
+}
+  
+.virtualScrollingMainTag::-webkit-scrollbar-track {
+    background: rgb(255, 148, 200);        
+}
+  
+.virtualScrollingMainTag::-webkit-scrollbar-thumb {
+    background-color: #3f51b5;    
+    border-radius: 20px;      
+    border: 3px solid rgb(255, 148, 200);   
+}
+
+
+
+.virtualScrollAdminComp::-webkit-scrollbar {
+    width: 12px;              
+}
+  
+.virtualScrollAdminComp::-webkit-scrollbar-track {
+    background: rgb(255, 65, 157);     
+}
+  
+.virtualScrollAdminComp::-webkit-scrollbar-thumb {
+    background-color: #3f51b5;    
+    border-radius: 50px;   
+    border: 3px solid rgb(255, 61, 155);
+}
+
+.mainHelloUserMessage {
+    font-size:15px; 
+    display: inline-block;
+}
+
+.signOutBtn {
+    font-size:15px; 
+    display:inline-block; 
+    margin-left: 25px; 
+    cursor: pointer;
+}

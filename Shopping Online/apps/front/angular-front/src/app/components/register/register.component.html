@@ -1,0 +1,77 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="mainDivsRegister" *ngIf="!approvedForStageTwo" >
+    <mat-card fxFlex="40%" fxFlex.xs="100%" fxFlex.sm="33%" class="boxRegister" >
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+        <label class="labelRegisterHeader"> ( Step 1 ) </label>
+      </mat-card-header>
+      <form class="registerForm" >
+        <mat-card-content  fxLayout="column" fxLayoutGap="30px" *ngIf="!approvedToProceed">
+          <mat-form-field >
+            <input matInput placeholder="ID Number (No need for starting 0's)" name="id" [(ngModel)] = "inputId" >
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput placeholder="Username (E-mail)" name="username" [(ngModel)] = "inputUsername">
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput placeholder="Password" type="password" name="password"[(ngModel)] = "inputPassword">
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput placeholder="Confirm Password" type="password" name="passwordConfirm" [(ngModel)] = "inputConfirmPassword">
+          </mat-form-field>
+        </mat-card-content>
+        <div class="wrapper" *ngIf="approvedToProceed"> 
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> 
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> 
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        </div>
+        <div [ngClass]="{'hidden' : !isErrorExistsStageOne,'visible' : isErrorExistsStageOne}"  class="errorDivRegisterStageOne">
+            {{errorMessageStageOne}}
+        </div>
+        <div class="buttonsDivRegisterComponent">
+        <button *ngIf="!approvedToProceed" mat-stroked-button color="accent" class="btn-block" (click)="onRegisterStageOne()">Submit</button>
+        <button *ngIf="approvedToProceed" mat-stroked-button color="accent" class="btn-block" (click)="onBackButton()">Back</button>
+        <button *ngIf="approvedToProceed" mat-stroked-button color="accent" class="btn-block" (click)="onNextButton()">Next</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="mainDivsRegister" *ngIf="approvedForStageTwo">
+    <mat-card fxFlex="40%" fxFlex.xs="100%" fxFlex.sm="33%" class="boxRegister">
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+        <label class="labelRegisterHeader"> ( Step 2 ) </label>
+      </mat-card-header>
+      <form class="registerForm" >
+        <mat-card-content  fxLayout="column" fxLayoutGap="30px">
+            <mat-form-field >
+              <mat-label>Choose a city of residence</mat-label>
+                <mat-select [(value)]="citySelect" name="city">
+                  <mat-option [value]="city" *ngFor="let city of cities">{{city}} </mat-option> 
+              </mat-select>
+            </mat-form-field>
+          <mat-form-field >
+            <input matInput placeholder="Street" name="street" [(ngModel)] = "inputStreet">
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput placeholder="House/Apt. number" type="number" name="id" [(ngModel)] = "inputHouseNumber" >
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput placeholder="First name" name="firstName" [(ngModel)] = "inputFirstName">
+        </mat-form-field>
+        <mat-form-field >
+            <input matInput placeholder="Last name" name="lastName" [(ngModel)] = "inputLastName">
+        </mat-form-field>
+        </mat-card-content>
+        <div [ngClass]="{'hidden' : !isErrorExistsStageTwo,'visible' : isErrorExistsStageTwo}"  class="errorDivRegisterStageOne">
+            {{errorMessageStageTwo}}
+        </div>
+        <div class="buttonsDivRegisterComponent">
+            <button *ngIf="approvedForStageTwo" mat-stroked-button color="accent" class="btn-block" (click)="onBackButtonStageTwo()">Back</button>
+            <button *ngIf="approvedForStageTwo" mat-stroked-button color="accent" class="btn-block" (click)="onRegisterStageTwo()">Submit</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
