@@ -1,0 +1,145 @@
+<div class="mainShoppingPageDiv" >
+<!-- left side start -->
+<div [ngStyle]="styleLeft" mwlResizable [enableGhostResize]="true" >
+<div class="resize-handle-left" mwlResizeHandle >
+    <div class="SearchBarMainDiv">
+        <mat-form-field class="search-bar-form-field">
+            <mat-label>Search Products Here:</mat-label>
+            <input [(ngModel)]="searchedProduct" (input)="searchedProducts()" matInput>
+          </mat-form-field>
+    </div>
+    <div>
+    </div>
+    <div class="myCartHeaderDiv">
+        My Cart 
+    </div>
+       <div class="productsViewMainDivSideBar">
+        <cdk-virtual-scroll-viewport itemSize="80" 
+        class="productsViewVirtualScrollMain">
+         <div *cdkVirtualFor="let currentProduct of currentProductsInClientOpenCart" 
+         class="productsViewVirtualScrollFirstInnerDiv">
+            <div class="productsViewVirtualScrollSecondInnerDiv">
+            <div>
+                <img class="productsViewVirtualScrollImg" src="assets/upload{{currentProduct.image}}" alt="" 
+                height="50px" width="50px">
+                <div class="productsViewVirtualScrollProductName">{{currentProduct.name}}</div>
+                <div class="productsViewVirtualScrollProductPrice">{{currentProduct.price | currency}}</div>
+            </div>
+            <div class="productsViewVirtualScrollProductsQuantity">Quantity: {{currentProduct.quantity}}</div>
+            <div class="productsViewVirtualScrollDeleteItemMainDiv">
+                    <mat-icon class="deleteItemIcon"
+                    ngDefaultControl [(ngModel)]="currentProduct.specific_row_location_in_cart_products_table" 
+                    (click)="onDeleteItemsFromCartAction(currentProduct.specific_row_location_in_cart_products_table)"
+                    >cancel_presentation
+                </mat-icon>
+            </div>
+          </div>
+       </div>
+     </cdk-virtual-scroll-viewport> 
+    </div>  
+    <div class="totalPriceDiv">
+        <div class="totalPriceInsideDiv">
+            Total Cart Cost: {{currentTotalCartPrice | currency}}
+        </div>
+       <div 
+       [ngClass]="!currentProductsInClientOpenCart?.length ? 'emprtCartDivButtonWithDisabledEvents' : 'emprtCartDivButton'" 
+       (click)="onEmptyCartAction()">
+        Empty cart <div class="emprtCartInsideDivButton"> <mat-icon 
+            class="emptyCartIcon" 
+            >remove_shopping_cart</mat-icon></div>
+       </div>
+       <div [ngClass]="!currentProductsInClientOpenCart?.length ? 'submitOrderDivButtonWithDisabledEvents' : 'submitOrderDivButton'" 
+       (click)="onSubmitOrder()">
+        Submit your order <div class="submitOrderInsideDivButton"> <mat-icon 
+            class="submitOrderIcon"
+            >done</mat-icon></div>
+       </div>
+    </div>
+
+</div>
+
+</div>
+<!-- left side end -->
+
+<!-- right side start -->
+<div [ngStyle]="styleRight" mwlResizable [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event)">
+    <div>
+        <mat-toolbar color="primary" fxLayout="row wrap" class="categoriesHeader">
+          <button (click)="getFirstPageProductCategory(productCategory.id)" 
+          *ngFor="let productCategory of productCategoriesList let i=index" 
+          mat-raised-button (click)="onCategorySelect(i)" 
+          [ngClass]="selectedCategoryIndex === i && !isFreeTextSearchModeOn ? 'selectedCategoryButton' : 'categoryButton'">
+            {{productCategory.name}}
+        </button>
+        </mat-toolbar>
+    </div>
+
+    <!--spinner -->
+    <div *ngIf="isSpinnerOn" fxLayout="row wrap" class="spinnerMainDiv">
+    <mat-spinner class="spinnerSelf" color="accent"></mat-spinner>
+   </div>
+   <!--spinner -->
+    <div *ngIf="!isSpinnerOn" class="resize-handle-right" mwlResizeHandle [resizeEdges]="{ left: true }">
+            <div class="tooltip"> <mat-icon class="compareArrowsIcon">compare_arrows</mat-icon>
+                    <span class="tooltiptext compareArrowsIconText">
+                        Pull arrow left to enlarge products view box or right to reduce
+                    </span>
+            </div>
+    </div>
+    <div *ngIf="!isSpinnerOn && !isFreeTextSearchModeOn" class="productsNavigationArrowsMainDiv">
+        <button *ngIf="isBackButtonPresented" 
+        (click)="goBackProductsPageByCategory()" 
+        mat-icon-button 
+        class="productsNavigationArrowButton">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button *ngIf="isForwardButtonPresented" 
+        (click)="goForwardProductsPageByCategory()" 
+        mat-icon-button 
+        class="productsNavigationArrowButton">
+            <mat-icon>arrow_forward</mat-icon>
+        </button>
+   </div>
+
+<!-- free search viewport -->
+   <cdk-virtual-scroll-viewport itemSize="250" 
+   (scrolledIndexChange)="getNextSearchedProductsBatch($event)"
+   *ngIf="!isSpinnerOn && isFreeTextSearchModeOn" 
+   class="virtualScrollingMainTag">
+    <div *cdkVirtualFor="let product of productsArrayForInfiniteScrolling" class="virtualScrollingCardDiv">
+    <mat-card class="virtualScrollingCard">
+        <mat-card-header >
+          <mat-card-subtitle >{{product.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <div ><img src="assets/upload{{product.image}}" alt="" class="virtualScrollingCardImg"></div>
+        <mat-card-content>
+        <div>{{product.price | currency}} </div>
+        </mat-card-content>
+        <button mat-raised-button ngDefaultControl [(ngModel)]="product.id" (click)="onSubmitNumberOfItems(product.id)">
+            Add to cart <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </mat-card>
+    </div>
+</cdk-virtual-scroll-viewport> 
+<!-- free search viewport  -->
+
+    <div *ngIf="!isSpinnerOn && !isFreeTextSearchModeOn" fxLayout="row wrap" class="productsViewMainDiv">
+        <div *ngFor="let product of products" class="productsViewCardDiv">
+        <mat-card class="productsViewCard">
+            <mat-card-header >
+              <mat-card-subtitle >{{product.name}}</mat-card-subtitle>
+            </mat-card-header>
+            <div ><img src="assets/upload{{product.image}}" alt="" class="productsViewCardImg"></div>
+            <mat-card-content>
+            <div>{{product.price | currency}} </div>
+            </mat-card-content>
+            <button mat-raised-button ngDefaultControl [(ngModel)]="product.id" (click)="onSubmitNumberOfItems(product.id)">
+                Add to cart <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+          </mat-card>
+        </div>
+    </div>
+</div>
+<!-- right side start -->
+
+</div>

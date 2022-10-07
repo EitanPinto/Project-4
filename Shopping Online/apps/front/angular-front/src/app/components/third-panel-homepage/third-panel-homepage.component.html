@@ -1,0 +1,32 @@
+<div>
+    <mat-card  class="box" >
+   <div class="divImgThirdComHome">
+    <img src="../../../assets/upload/deliveryguy.jpg" alt="N/A" width="230px" height="180px" class="ImgThirdComHome">
+   </div>
+<div class="divNumberOfProductsandOrders">
+    <div>
+        Available products in our store right now - <span class="spanNumberOfProductsandOrders">{{numberOfAllProducts}}</span>
+    </div>
+    <div class="divNumberOfOrders">
+        Number of orders submitted in our store until now - <span class="spanNumberOfProductsandOrders">{{numberOfAllOrders}}</span>
+    </div>
+</div>
+<div *ngIf="authService.isLoggedIn" class="mainDivNotificationThirdCom">
+    <div *ngIf="authService.openCartNotExist || authService.openCartExist" >
+        Hi {{authService.userName}}
+    </div>
+    <div *ngIf="authService.openCartExist" class="CartNotificationDivs">
+        <div>You have an open cart from {{authService.cartCreatedAt}}</div>
+        <div>The cart's current price is {{authService.currentTotalPrice}}$</div>
+   </div>
+    <div *ngIf="authService.openCartNotExist" class="CartNotificationDivs">
+        <div>Your last purchase was on {{authService.order_submitted_at}}</div>   
+        <div>You paid {{authService.final_price}}$ for it</div>  
+    </div>
+    <div *ngIf="authService.isNewCustomer" >
+        Wellcome {{authService.userName}}!
+    </div>
+</div>
+    </mat-card>
+  </div>
+

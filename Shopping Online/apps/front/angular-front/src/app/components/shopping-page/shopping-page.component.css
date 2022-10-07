@@ -1,0 +1,9 @@
+
+  .resize-handle-right {
+    height: 20px;
+    cursor: col-resize;
+  }
+  .resize-handle-left {
+    height: 100%;
+    width: 5px;
+  }
